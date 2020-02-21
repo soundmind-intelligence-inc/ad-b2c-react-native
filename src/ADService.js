@@ -10,7 +10,7 @@ class ADService {
     this.passwordResetPolicy = props.passwordResetPolicy;
     this.profileEditPolicy = props.profileEditPolicy;
     this.redirectURI = encodeURI(props.redirectURI);
-    this.scope = encodeURI(`${this.appId} offline_access`);
+    this.scope = encodeURI(`${this.appId} openid profile offline_access`);
     this.response_mode = 'query';
     this.tokenResult = {};
     this.secureStore = props.secureStore;
@@ -92,7 +92,7 @@ class ADService {
     try {
       let params = {
         client_id: this.appId,
-        scope: `${this.appId} offline_access`,        
+        scope: `${this.appId} openid profile offline_access`,        
         redirect_uri: this.redirectURI,
       };
 
@@ -158,7 +158,7 @@ class ADService {
   _getStaticURI = (policy, endPoint) => {
     let uri = `${this.baseUri}/${policy}/oauth2/v2.0/${endPoint}?`;
     if (endPoint === 'authorize') {
-      uri += `client_id=${this.appId}&response_type=code`;
+      uri += `client_id=${this.appId}&response_type=code%20id_token`;
       uri += `&redirect_uri=${this.redirectURI}`;
       uri += '&response_mode=query';
       uri += `&scope=${this.scope}`;
