@@ -95,12 +95,8 @@ export default class LoginView extends PureComponent {
 
   render() {
     const { uri, loaded } = this.state;
-    const {  ...rest } = this.props;
-
-    // if (!loaded) {
-    //   return renderLoading();
-    // }
-
+    const { renderLoading, ...rest } = this.props;
+    
     return (
       <WebView
         {...rest}
@@ -108,8 +104,8 @@ export default class LoginView extends PureComponent {
         source={{ uri }}
         onNavigationStateChange={this.onNavigationStateChangeAsync}
         onShouldStartLoadWithRequest={this.onShouldStartLoadWithRequest}
-        // renderLoading={renderLoading}
-        startInLoadingState
+        onLoadStart={renderLoading(true)}
+        onLoad={renderLoading(false)}
         ref={c => {
           this.webView = c;
         }}
