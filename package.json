@@ -1,6 +1,6 @@
 {
   "name": "ad-b2c-react-native-soundmind",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "React Native Azure B2C auth using JS. This is specifically designed to work with soundmind apps.",
   "main": "index.js",
   "files": [
