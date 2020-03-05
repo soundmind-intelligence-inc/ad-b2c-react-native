@@ -43,6 +43,7 @@ export default class LoginView extends PureComponent {
   }
 
   onShouldStartLoadWithRequest(navState) {
+    sleep(500); //Without this, logins fail on iOS
     const result = adService.getLoginFlowResult(navState.url);
     if (
       result.requestType === RequestType.Ignore ||
@@ -112,4 +113,12 @@ export default class LoginView extends PureComponent {
       />
     );
   }
+}
+
+function sleep(milliseconds) {
+  const date = Date.now();
+  let currentDate = null;
+  do {
+    currentDate = Date.now();
+  } while (currentDate - date < milliseconds);
 }
